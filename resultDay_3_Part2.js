@@ -9,8 +9,6 @@ for(let i=0; i<dataDay3.length;i++){
 twoDArray.push([])
 for(let i=0; i<twoDArray.length; i++){
     for (let j=0; j<twoDArray[i].length; j++){
-
-        
         if(twoDArray[i][j]==="|") {
             //determine if adjacent position is number:
             if(Number(twoDArray[i][j+1])||Number(twoDArray[i][j+1])===0) { numberArray.add(JSON.stringify([adjacentNumber(twoDArray[i], j+1), [i,findStartIndexJ(twoDArray[i], j+1)],[i,j]]))}
@@ -50,6 +48,8 @@ function findStartIndexJ(array, jIndex){
     }
     return jIndex+1;
 }
+
+let arrayClone=[...numberArray2];
 //counter and eliminate duplicate result
 for(let i=0; i< numberArray2.length-1; i++){
     
@@ -61,8 +61,8 @@ for(let i=0; i< numberArray2.length-1; i++){
         el=el.replaceAll("|","");
         return el;
     });
-    for(let j=i+1; j< numberArray2.length;j++){
-        let fragment2=numberArray2[j].substring(1, numberArray2[j].length-1).replaceAll(/[\[\]]/g, "|").split(',|');
+    for(let j=i+1; j< arrayClone.length;j++){
+        let fragment2=arrayClone[j].substring(1, arrayClone[j].length-1).replaceAll(/[\[\]]/g, "|").split(',|');
         fragment2=fragment2.map(el=>{
             el=el.replaceAll("|","");
             return el;
@@ -71,6 +71,7 @@ for(let i=0; i< numberArray2.length-1; i++){
             counter=counter+1;
             firstValue=Number(fragment[0]);
             secondValue=Number(fragment2[0]);
+            arrayClone[j]="";
         }
       
     }
