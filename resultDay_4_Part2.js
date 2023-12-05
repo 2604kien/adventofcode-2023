@@ -1,3 +1,4 @@
+let start = Date.now();
 const {dataDay4}=require('./data');
 var sum=0;
 var numberOfDuplicate=[];
@@ -31,4 +32,7 @@ for(let i=0; i< numberOfDuplicate.length; i++){
         numberOfDuplicate[i]=0;
     }
 }
+
+let timeTaken = Date.now() - start;
+console.log("Total time taken : " + timeTaken + " milliseconds");
 console.log(sum);
